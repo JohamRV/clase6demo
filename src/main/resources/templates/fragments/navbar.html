@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:fragment="header (title)">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,16 +19,27 @@
                 </button>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" th:classappend="${active == 'Employee'?'active':''}">
+                        <li sec:authorize="hasAnyAuthority('admin','logistica')" class="nav-item"
+                            th:classappend="${active == 'Employee'?'active':''}">
                             <a class="nav-link" th:href="@{/employee}">Employee</a>
                         </li>
-                        <li class="nav-item" th:classappend="${active == 'Shipper'?'active':''}">
+                        <li sec:authorize="hasAnyAuthority('admin')" class="nav-item"
+                            th:classappend="${active == 'Shipper'?'active':''}">
                             <a class="nav-link" th:href="@{/shipper}">Shipper</a>
                         </li>
                         <li class="nav-item" th:classappend="${active == 'Product'?'active':''}">
                             <a class="nav-link" th:href="@{/product}">Product</a>
                         </li>
                     </ul>
+                </div>
+                <div sec:authorize="isAnonymous()" class="form-inline my-2 my-lg-0 d-flex">
+                    <a class="nav-link" th:href="@{/loginForm}">Iniciar Sesión</a>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0 d-flex">
+                    <span th:text="|Bienvenido ${#authentication.name}|"></span>
+                    <form th:action="@{/logout}" method="post">
+                        <input class="btn btn-link" type="submit" value="(Cerrar Sesión)"/>
+                    </form>
                 </div>
             </div>
         </nav>
