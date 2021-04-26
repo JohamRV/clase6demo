@@ -18,14 +18,17 @@
                 </button>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item" th:classappend="${active == 'Employee'?'active':''}">
-                            <a class="nav-link" th:href="@{/employee}">Employee</a>
+                        <li class="nav-item">
+                            <a class="nav-link" th:classappend="${active == 'Employee'?'active':''}"
+                               th:href="@{/employee}">Employee</a>
                         </li>
-                        <li class="nav-item" th:classappend="${active == 'Shipper'?'active':''}">
-                            <a class="nav-link" th:href="@{/shipper}">Shipper</a>
+                        <li class="nav-item">
+                            <a class="nav-link" th:classappend="${active == 'Shipper'?'active':''}"
+                               th:href="@{/shipper}">Shipper</a>
                         </li>
-                        <li class="nav-item" th:classappend="${active == 'Product'?'active':''}">
-                            <a class="nav-link" th:href="@{/product}">Product</a>
+                        <li class="nav-item">
+                            <a class="nav-link" th:classappend="${active == 'Product'?'active':''}"
+                               th:href="@{/product}">Product</a>
                         </li>
                     </ul>
                 </div>
