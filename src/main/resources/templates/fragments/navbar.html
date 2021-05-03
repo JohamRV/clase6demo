@@ -37,7 +37,7 @@
                     <a class="nav-link" th:href="@{/loginForm}">Iniciar Sesión</a>
                 </div>
                 <div sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0 d-flex">
-                    <span th:text="|Bienvenido ${#authentication.name}|"></span>
+                    <span th:text="|Bienvenido ${session.usuario.nombre} ${session.usuario.apellido}|" class="navbar-text"></span>
                     <form th:action="@{/logout}" method="post">
                         <input class="btn btn-link" type="submit" value="(Cerrar Sesión)"/>
                     </form>

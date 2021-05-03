@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/shipper","/shipper/**").hasAuthority("admin")
                 .anyRequest().permitAll();
 
-        http.logout();
+        http.logout().deleteCookies("JSESSIONID").invalidateHttpSession(true);
     }
 
     @Autowired

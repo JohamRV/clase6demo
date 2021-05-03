@@ -1,6 +1,7 @@
 package com.example.clase6demo.controller;
 
 import com.example.clase6demo.entity.Product;
+import com.example.clase6demo.entity.Usuario;
 import com.example.clase6demo.repository.CategoryRepository;
 import com.example.clase6demo.repository.ProductRepository;
 import com.example.clase6demo.repository.SupplierRepository;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -33,7 +35,10 @@ public class ProductController {
     }
 
     @GetMapping("/new")
-    public String nuevoProductoFrm(Model model, @ModelAttribute("product") Product product) {
+    public String nuevoProductoFrm(Model model, @ModelAttribute("product") Product product, HttpSession session) {
+
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        System.out.println(usuario.getDni());
         model.addAttribute("listaCategorias", categoryRepository.findAll());
         model.addAttribute("listaProveedores", supplierRepository.findAll());
         return "product/editFrm";
