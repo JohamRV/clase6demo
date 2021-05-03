@@ -35,7 +35,6 @@ public class LoginController {
         Usuario usuario = usuarioRepository.findByEmail(email);
         session.setAttribute("usuario",usuario);
 
-
         if(rol.equals("admin")){
             return "redirect:/shipper/";
         }else{
